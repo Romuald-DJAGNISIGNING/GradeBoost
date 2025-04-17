@@ -41,14 +41,15 @@ Deployment: Docker, Nginx (for web server), and Gunicorn (for WSGI server)
 Project Setup Instructions:
 1. Clone the Repository:
 
-git clone https://github.com/your-username/GradeBoost.git
+git clone https://github.com/Romuald-DJAGNISIGNING/GradeBoost.git
 cd GradeBoost
 2. Backend Setup (Django)
 Create a Virtual Environment:
 
 
 python -m venv venv
-source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+source venv/bin/activate 
+# On Windows, use `.venv\Scripts\activate`
 Install Dependencies:
 
 
