@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Set Your Home Location</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Leaflet.js CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Choose Your Home Location</h2>
+    
+    <div id="map"></div>
+
+    <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="latitude" id="latitude">
+        <input type="hidden" name="longitude" id="longitude">
+        <button type="submit">Save Location</button>
+    </form>
+
+    <!-- Leaflet.js JS -->
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script>
+        // Initialize map and set default coordinates
+        const map = L.map('map').setView([4.05, 9.7], 13);  // Default: Douala, Cameroon
+
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Marker that updates with click
+        let marker = L.marker([4.05, 9.7], {draggable: true}).addTo(map);
+
+        function updateLatLngFields(lat, lng) {
+            document.getElementById('latitude').value = lat;
+            document.getElementById('longitude').value = lng;
+        }
+
+        updateLatLngFields(marker.getLatLng().lat, marker.getLatLng().lng);
+
+        marker.on('dragend', function (e) {
+            const {lat, lng} = e.target.getLatLng();
+            updateLatLngFields(lat, lng);
+        });
+
+        map.on('click', function (e) {
+            const {lat, lng} = e.latlng;
+            marker.setLatLng([lat, lng]);
+            updateLatLngFields(lat, lng);
+        });
+    </script>
+</body>
+</html>

@@ -5,11 +5,11 @@ Welcome to GradeBoost, the ultimate peer-to-peer tutoring platform designed to c
 Features:
 Student & Tutor Profiles: Detailed profiles for both students and tutors, including personal information, subject expertise, availability, and ratings.
 
-Booking System: Seamlessly book sessions with tutors based on availability and your schedule.
+Booking System: Seamlessly book custom_sessions with tutors based on availability and your schedule.
 
-Onsite Tutoring: Sessions can be conducted on-campus (using school timetable integration) or off-campus (home tutoring with additional charges).
+Onsite Tutoring: custom_sessions can be conducted on-campus (using school timetable integration) or off-campus (home tutoring with additional charges).
 
-Tutor Ratings & Reviews: Students rate and review tutors after sessions, and tutors' ratings are displayed prominently.
+Tutor Ratings & Reviews: Students rate and review tutors after custom_sessions, and tutors' ratings are displayed prominently.
 
 Payment System: Integrated payment options, including Orange Money and Mobile Money, for a secure and convenient transaction process.
 
@@ -19,7 +19,7 @@ Reporting & Moderation: A reporting system for students and tutors to flag any i
 
 Admin Control Panel: Admins manage user accounts, oversee platform activity, handle disputes, and ensure smooth platform operation.
 
-Video Conferencing Integration: Online sessions are supported with video conferencing tools for remote learning.
+Video Conferencing Integration: Online custom_sessions are supported with video conferencing tools for remote learning.
 
 Technologies Used:
 Backend: Django (Python)
@@ -98,7 +98,7 @@ POST /api/auth/login/ - User login
 
 GET /api/tutors/ - Fetch list of available tutors
 
-POST /api/sessions/ - Book a tutoring session
+POST /api/custom_sessions/ - Book a tutoring session
 
 POST /api/payments/ - Process payment for a session
 
