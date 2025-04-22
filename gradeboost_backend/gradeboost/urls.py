@@ -1,9 +1,13 @@
-# gradeboost/urls.py
+
 
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.http import HttpResponse
+
+def home(request):
+    return HttpResponse("Welcome to GradeBoost!")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -16,7 +20,7 @@ urlpatterns = [
     path('api/reports/', include('reports.urls')),
     path('auth/', include('social_django.urls', namespace='social')),
     path('accounts/', include('allauth.urls')),  # Allauth URLs for login, logout, registration, etc.
-    
+    path('', home, name='home'),  # Add this line for the root URL
 ]
 
 if settings.DEBUG:
