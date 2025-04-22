@@ -1,0 +1,38 @@
+name: Dynamic .gitignore Monitor
+
+on:
+  push:
+    paths:
+      - '**/*'
+  schedule:
+    - cron: '0 0 * * *' # Runs daily at midnight UTC
+
+jobs:
+  update-gitignore:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out the repository
+      uses: actions/checkout@v3
+
+    - name: Scan for new file types
+      run: |
+        echo "Scanning repository for new file types..."
+        # Generate a list of file types in the repository
+        find . -type f | sed 's|.*\.||' | sort | uniq > file_types.txt
+
+    - name: Suggest updates to .gitignore
+      run: |
+        echo "Checking for missing patterns in .gitignore..."
+        missing_patterns=""
+        while read -r ext; do
+          if ! grep -q ".$ext" .gitignore; then
+            missing_patterns="$missing_patterns\n*.$ext"
+          fi
+        done < file_types.txt
+
+        if [ -n "$missing_patterns" ]; then
+          echo -e "The following patterns should be added to your .gitignore:$missing_patterns"
+        else
+          echo "No updates needed for .gitignore."
+        fi
