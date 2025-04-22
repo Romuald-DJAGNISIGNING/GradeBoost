@@ -124,6 +124,7 @@ ACCOUNT_FORMS = {
     'signup': 'users.forms.CustomSignupForm',  # Custom signup form
 }
 
+CSRF_USE_SESSIONS = False
 
 # Social Auth Settings
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '<774631068431-u2i657s26pr1anlrqi1d3l5h7dbi4kee.apps.googleusercontent.com>'
