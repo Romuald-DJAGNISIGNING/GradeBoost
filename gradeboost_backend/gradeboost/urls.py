@@ -18,6 +18,7 @@ urlpatterns = [
     path('api/payments/', include('payments.urls')),
     path('api/reviews/', include('reviews.urls')),
     path('api/reports/', include('reports.urls')),
+    path('api/progress/', include('progress.urls')),
     path('auth/', include('social_django.urls', namespace='social')),
     path('accounts/', include('allauth.urls')),  # Allauth URLs for login, logout, registration, etc.
     path('', home, name='home'),  # Add this line for the root URL
